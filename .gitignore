@@ -1,0 +1,8 @@
+build/
+Output/
+gradle/
+log/
+.gradle/
+.idea/
+.DS_Store
+ClientLink.iml

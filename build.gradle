@@ -1,0 +1,40 @@
+group 'Appium'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.5.3'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.5.3'
+    compile group: 'io.appium', name: 'java-client', version: '5.0.3'
+    compile group: 'org.testng', name: 'testng', version: '6.11'
+    compile group: 'com.relevantcodes', name: 'extentreports', version: '2.41.2'
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.23'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.10.2'
+    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.16.1'
+    compile group: 'com.beust', name: 'jcommander', version: '1.64'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.15'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+}
+
+
+test {
+    useTestNG {
+            suites 'tests.xml'
+    }
+}
