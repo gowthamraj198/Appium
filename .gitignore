@@ -4,5 +4,6 @@ gradle/
 log/
 .gradle/
 .idea/
+out/
 .DS_Store
 ClientLink.iml
