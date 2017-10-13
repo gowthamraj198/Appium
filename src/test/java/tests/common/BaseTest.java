@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import utils.Reports;
 
@@ -36,15 +37,22 @@ public class BaseTest {
             File app = new File(appDir, getValuesFromPropertyFile("app"));
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("appium-version", "1.0");
+            capabilities.setCapability("platformName", "Android");
+            capabilities.setCapability("platformversion", "7.0");
+            capabilities.setCapability("deviceName","ZY223HN7JN");
+            capabilities.setCapability("appium-version", "1.7.1");
+
+           /* if emulator
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("platformVersion", "7.1.1");
             capabilities.setCapability("deviceName", "Nexus 6");
             capabilities.setCapability("avd", "Nexus_6");
             capabilities.setCapability("app", app.getAbsolutePath());
+            capabilities.setCapability("fullReset","false");*/
+
             capabilities.setCapability("appPackage", getValuesFromPropertyFile("appPackage"));
             capabilities.setCapability("appActivity", getValuesFromPropertyFile("appActivity"));
-            capabilities.setCapability("fullReset","false");
+
             driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
         }
         catch (IOException e) {

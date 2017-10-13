@@ -1,5 +1,6 @@
 package pages;
 
+import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -7,9 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Reports;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 
-    private RemoteWebDriver driver;
+    private AndroidDriver driver;
     private Reports reports;
     protected Logger log             = Logger.getLogger(HomePage.class);
 
@@ -22,7 +23,7 @@ public class LoginPage {
     @FindBy(id="signInSubmit")
     private WebElement signInBtn;
 
-    public LoginPage(RemoteWebDriver driver, Reports reports) {
+    public LoginPage(AndroidDriver driver, Reports reports) {
         this.driver = driver;
         this.reports = reports;
         PageFactory.initElements(driver,this);
@@ -34,13 +35,11 @@ public class LoginPage {
             pwd.sendKeys("ser344");
             rememberPwdCheckBox.click();
             signInBtn.click();
-            log.info("logged in successfully");
-            reports.reportStep(driver, "logged in successfully", "PASS");
+            logs_Reports(driver,reports,log,"Logged in Successfully","PASS");
         }
         catch (Exception e)
         {
-            log.info("error in login");
-            reports.reportStep(driver, "error in login", "FAIL");
+            logs_Reports(driver,reports,log,"Logged in Failed","FAIL");
             throw new Exception();
         }
 

@@ -8,7 +8,7 @@ import org.testng.ITestResult;
 public class RetryAnalyzer implements IRetryAnalyzer {
 
 	int counter = 0;
-	int retryLimit = 1;        //change to 1 to retry one more time
+	int retryLimit = 0;        //change to 1 to retry one more time
 	Logger log = Logger.getLogger(BaseTest.class);
 	String resultName;
 	static String makeReports="";

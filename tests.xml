@@ -6,8 +6,12 @@
     </listeners>
 
     <test name="Appium">
+        <!--<packages>-->
+            <!--<package name="tests.tests"/>-->
+        <!--</packages>-->
         <classes>
-            <class name="tests.Login"/>
+            <!--<class name="tests.tests.Login"/>-->
+            <class name="tests.tests.SkipSignInAndOrderBooks"/>
         </classes>
     </test>
 </suite>

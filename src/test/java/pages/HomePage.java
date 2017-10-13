@@ -1,5 +1,6 @@
 package pages;
 
+import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -9,14 +10,16 @@ import utils.Reports;
 
 public class HomePage extends BasePage{
 
-    private             RemoteWebDriver     driver;
+    private             AndroidDriver     driver;
     private             Reports             reports;
     protected           Logger              log             = Logger.getLogger(HomePage.class);
 
     @FindBy(id="sign_in_button")
     private WebElement signInBtn;
+    @FindBy(id="skip_sign_in_button")
+    private WebElement skipSignInBtn;
 
-    public HomePage(RemoteWebDriver driver, Reports reports) {
+    public HomePage(AndroidDriver driver, Reports reports) {
         this.driver = driver;
         this.reports = reports;
         PageFactory.initElements(driver,this);
@@ -25,15 +28,27 @@ public class HomePage extends BasePage{
     public LoginPage clickOnSignInButton() throws Exception {
         try {
             signInBtn.click();
-            log.info("Signin button clicked");
-            reports.reportStep(driver, "Signin button clicked", "PASS");
+            logs_Reports(driver,reports,log,"Signin button clicked","PASS");
         }
         catch (Exception e)
         {
-            log.info("Signin button not clicked");
-            reports.reportStep(driver, "Signin button not clicked", "FAIL");
+            logs_Reports(driver,reports,log,"Signin button not clicked","FAIL");
             throw new Exception();
         }
         return new LoginPage(driver,reports);
+    }
+
+    public FirstPage clickOnSkipLoginButton() throws Exception {
+        try {
+            Thread.sleep(5000);
+            skipSignInBtn.click();
+            logs_Reports(driver,reports,log,"Skip signin button clicked","PASS");
+        }
+        catch (Exception e)
+        {
+            logs_Reports(driver,reports,log,"Skip signin button clicked","FAIL");
+            throw new Exception();
+        }
+        return new FirstPage(driver,reports);
     }
 }
